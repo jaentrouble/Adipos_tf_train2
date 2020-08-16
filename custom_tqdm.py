@@ -1,4 +1,4 @@
-from tqdm.notebook import tqdm
+from tqdm import tqdm_notebook
 from tensorflow.keras.callbacks import Callback
 
 class TqdmNotebookCallback(Callback):
@@ -53,7 +53,7 @@ class TqdmNotebookCallback(Callback):
         :param initial: Initial counter state
         :return: new progress bar
         """
-        return tqdm(desc=desc, total=total, leave=leave, file=self.output_file, initial=initial)
+        return tqdm_notebook(desc=desc, total=total, leave=leave, file=self.output_file, initial=initial)
 
     def build_tqdm_outer(self, desc, total):
         """
