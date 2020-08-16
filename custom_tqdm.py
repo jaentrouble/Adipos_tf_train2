@@ -134,7 +134,7 @@ class TqdmNotebookCallback(Callback):
             self.tqdm_outer.close()
 
     def append_logs(self, logs):
-        print(self.params)
+        print(logs)
         metrics = self.params['metrics']
         for metric, value in six.iteritems(logs):
             if metric in metrics:
