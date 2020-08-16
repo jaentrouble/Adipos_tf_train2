@@ -134,8 +134,7 @@ class TqdmNotebookCallback(Callback):
             self.tqdm_outer.close()
 
     def append_logs(self, logs):
-        print(logs)
-        metrics = self.params['metrics']
+        metrics = list(logs.keys())
         for metric, value in six.iteritems(logs):
             if metric in metrics:
                 if metric in self.running_logs:
@@ -144,7 +143,7 @@ class TqdmNotebookCallback(Callback):
                     self.running_logs[metric] = [value[()]]
 
     def format_metrics(self, logs):
-        metrics = self.params['metrics']
+        metrics = list(logs.keys())
         strings = [self.metric_format.format(name=metric, value=np.mean(logs[metric], axis=None)) for metric in metrics
                    if
                    metric in logs]
