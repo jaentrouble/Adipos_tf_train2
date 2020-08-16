@@ -58,7 +58,7 @@ def run_training(
 
     logdir = 'logs/fit/' + name
     tensorboard_callback = tf.keras.callbacks.TensorBoard(
-        logdir=logdir,
+        log_dir=logdir,
         histogram_freq=1,
         profile_batch='3,5',
         update_freq='epoch'
