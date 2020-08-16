@@ -16,7 +16,7 @@ class TqdmNotebookCallback(Callback):
                  show_outer=True,
                  output_file=stderr,
                  initial=0,
-                 metrics):
+                 metrics=[]):
         """
         Construct a callback that will create and update progress bars.
         :param outer_description: string for outer progress bar
