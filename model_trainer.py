@@ -1,6 +1,7 @@
 import tensorflow as tf
 from tensorflow import keras
 from tensorflow.keras.mixed_precision import experimental as mixed_precision
+from model_lr import lr_no_update
 import time
 
 class AdiposeModel(keras.Model):
@@ -23,9 +24,6 @@ class AdiposeModel(keras.Model):
         if training:
             return self.logits(inputs, training=training)
         return tf.math.sigmoid(self.logits(inputs, training=training))
-
-def lr_no_update(*args):
-    return 0.0
 
 def run_training(
         model_f, 
