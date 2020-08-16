@@ -15,7 +15,8 @@ class TqdmNotebookCallback(Callback):
                  show_inner=True,
                  show_outer=True,
                  output_file=stderr,
-                 initial=0):
+                 initial=0,
+                 metrics):
         """
         Construct a callback that will create and update progress bars.
         :param outer_description: string for outer progress bar
@@ -46,6 +47,7 @@ class TqdmNotebookCallback(Callback):
         self.running_logs = None
         self.inner_count = None
         self.initial = initial
+        self.metrics = metrics
 
     def tqdm(self, desc, total, leave, initial=0):
         """
@@ -104,6 +106,10 @@ class TqdmNotebookCallback(Callback):
             self.tqdm_inner.close()
         if self.show_outer:
             self.tqdm_outer.update(1)
+        end_of_epoch_line = []
+        for k, v in logs.items():
+            end_of_epoch_line.append(k + ':' + str(v))
+        print(self.separator.join(end_of_epoch_line))
 
     def on_train_batch_begin(self, batch, logs={}):
         pass
@@ -134,7 +140,7 @@ class TqdmNotebookCallback(Callback):
             self.tqdm_outer.close()
 
     def append_logs(self, logs):
-        metrics = list(logs.keys())
+        metrics = self.metrics
         for metric, value in six.iteritems(logs):
             if metric in metrics:
                 if metric in self.running_logs:
@@ -143,7 +149,7 @@ class TqdmNotebookCallback(Callback):
                     self.running_logs[metric] = [value]
 
     def format_metrics(self, logs):
-        metrics = list(logs.keys())
+        metrics = self.metrics
         strings = [self.metric_format.format(name=metric, value=np.mean(logs[metric], axis=None)) for metric in metrics
                    if
                    metric in logs]

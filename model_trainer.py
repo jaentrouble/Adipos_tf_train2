@@ -69,7 +69,7 @@ def run_training(
         verbose=1
     )
 
-    tqdm_callback = TqdmNotebookCallback()
+    tqdm_callback = TqdmNotebookCallback(metrics=['loss', 'binary_accuracy'])
 
     mymodel.fit(
         x=X_train,
