@@ -29,6 +29,8 @@ def get_model(model_f):
     """
     To get model only and load weights.
     """
+    policy = mixed_precision.Policy('mixed_float16')
+    mixed_precision.set_policy(policy)
     inputs = keras.Input((200,200,3))
     test_model = AdiposeModel(inputs, model_f)
     test_model.compile(
