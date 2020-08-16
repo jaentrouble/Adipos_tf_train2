@@ -1,8 +1,5 @@
 import tensorflow as tf
 from tensorflow import keras
-import numpy as np
-import six
-from sys import stderr
 from tensorflow.keras.mixed_precision import experimental as mixed_precision
 import time
 from custom_tqdm import TqdmNotebookCallback

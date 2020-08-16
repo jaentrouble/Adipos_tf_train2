@@ -1,5 +1,8 @@
 from tqdm.notebook import tqdm
 from tensorflow.keras.callbacks import Callback
+from sys import stderr
+import six
+import numpy as np
 
 class TqdmNotebookCallback(Callback):
     def __init__(self, outer_description="Training",
