@@ -1,7 +1,6 @@
 import tensorflow as tf
 from tensorflow import keras
 from tensorflow.keras.mixed_precision import experimental as mixed_precision
-from model_lr import lr_no_update
 import time
 
 class AdiposeModel(keras.Model):
@@ -62,7 +61,6 @@ def run_training(
         update_freq='epoch'
     )
     lr_callback = keras.callbacks.LearningRateScheduler(lr_f, verbose=1)
-    lr_no_update = keras.callbacks.LearningRateScheduler(lr_no_update, verbose=1)
 
     savedir = 'savedmodels/' + name + '/{epoch}'
     save_callback = keras.callbacks.ModelCheckpoint(
