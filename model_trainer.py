@@ -25,6 +25,13 @@ class AdiposeModel(keras.Model):
             return self.logits(inputs, training=training)
         return tf.math.sigmoid(self.logits(inputs, training=training))
 
+def get_model(model_f):
+    """
+    To get model only and load weights.
+    """
+    inputs = keras.Input((200,200,3))
+    return AdiposeModel(inputs, model_f)
+
 def run_training(
         model_f, 
         lr_f, 
