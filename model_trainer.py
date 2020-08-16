@@ -63,9 +63,10 @@ def run_training(
     )
     lr_callback = keras.callbacks.LearningRateScheduler(lr_f, verbose=1)
 
-    savedir = 'savedmodels/' + name + '/{epoch}/{epoch}.h5'
+    savedir = 'savedmodels/' + name + '/{epoch}'
     save_callback = keras.callbacks.ModelCheckpoint(
         savedir,
+        save_weights_only=True,
         verbose=1
     )
 
