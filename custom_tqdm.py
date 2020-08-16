@@ -105,10 +105,10 @@ class TqdmNotebookCallback(Callback):
         if self.show_outer:
             self.tqdm_outer.update(1)
 
-    def on_batch_begin(self, batch, logs={}):
+    def on_train_batch_begin(self, batch, logs={}):
         pass
 
-    def on_batch_end(self, batch, logs={}):
+    def on_train_batch_end(self, batch, logs={}):
         if self.mode == 0:
             update = logs['size']
         else:
