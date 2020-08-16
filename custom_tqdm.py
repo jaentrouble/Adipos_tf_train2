@@ -138,9 +138,9 @@ class TqdmNotebookCallback(Callback):
         for metric, value in six.iteritems(logs):
             if metric in metrics:
                 if metric in self.running_logs:
-                    self.running_logs[metric].append(value[()])
+                    self.running_logs[metric].append(value)
                 else:
-                    self.running_logs[metric] = [value[()]]
+                    self.running_logs[metric] = [value]
 
     def format_metrics(self, logs):
         metrics = list(logs.keys())
