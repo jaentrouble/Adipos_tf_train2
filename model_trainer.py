@@ -1,7 +1,11 @@
 import tensorflow as tf
 from tensorflow import keras
+import numpy as np
+import six
+from sys import stderr
 from tensorflow.keras.mixed_precision import experimental as mixed_precision
 import time
+from custom_tqdm import TqdmNotebookCallback
 
 class AdiposeModel(keras.Model):
     def __init__(self, inputs, model_function):
@@ -68,6 +72,8 @@ def run_training(
         verbose=1
     )
 
+    tqdm_callback = TqdmNotebookCallback()
+
     mymodel.fit(
         x=X_train,
         y=Y_train,
@@ -77,7 +83,9 @@ def run_training(
             tensorboard_callback,
             lr_callback,
             save_callback,
+            tqdm_callback,
         ],
+        verbose=0,
         validation_data=val_data
     )
 
