@@ -30,7 +30,15 @@ def get_model(model_f):
     To get model only and load weights.
     """
     inputs = keras.Input((200,200,3))
-    return AdiposeModel(inputs, model_f)
+    test_model = AdiposeModel(inputs, model_f)
+    test_model.compile(
+        optimizer='adam',
+        loss=loss,
+        metrics=[
+            keras.metrics.BinaryAccuracy(threshold=0.1),
+        ]
+    )
+    return test_model
 
 def run_training(
         model_f, 
