@@ -33,7 +33,7 @@ def get_model(model_f):
     test_model = AdiposeModel(inputs, model_f)
     test_model.compile(
         optimizer='adam',
-        loss=loss,
+        loss=keras.losses.BinaryCrossentropy(from_logits=True),
         metrics=[
             keras.metrics.BinaryAccuracy(threshold=0.1),
         ]
