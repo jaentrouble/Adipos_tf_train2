@@ -58,7 +58,8 @@ class TqdmNotebookCallback(Callback):
         :param initial: Initial counter state
         :return: new progress bar
         """
-        return tqdm(desc=desc, total=total, leave=leave, file=self.output_file, initial=initial)
+        return tqdm(desc=desc, total=total, leave=leave, file=self.output_file, 
+                    initial=initial, ncols='100%')
 
     def build_tqdm_outer(self, desc, total):
         """
