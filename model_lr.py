@@ -33,6 +33,17 @@ def lr_step3(epoch, lr):
         lr = lr * 0.95
     return lr
 
+def lr_step4(epoch, lr):
+    if epoch <= 10 :
+        lr = (epoch +1) * 0.001
+    if epoch > 10 :
+        lr = 0.01
+    if epoch > 20 :
+        lr = 0.005
+    if epoch > 50 :
+        lr = lr * 0.95
+    return lr
+
 def lr_mul_inv(epoch, lr):
     return 0.01 / (epoch+1)
 
