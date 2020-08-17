@@ -10,7 +10,7 @@ class TqdmNotebookCallback(Callback):
                  inner_description_update="[{metrics}]",
                  metric_format="{name}: {value:0.3f}",
                  separator=", ",
-                 leave_inner=True,
+                 leave_inner=False,
                  leave_outer=True,
                  show_inner=True,
                  show_outer=True,
