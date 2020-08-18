@@ -52,7 +52,8 @@ def lr_step5(epoch, lr):
     if epoch > 20 :
         lr = 0.005
     if epoch > 40 :
-        lr = lr * 0.99
+        if epoch % 5 == 0 :
+            lr = lr * 0.95
     return lr
 
 def lr_mul_inv(epoch, lr):
