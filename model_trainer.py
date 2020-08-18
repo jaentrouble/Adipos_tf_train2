@@ -52,14 +52,14 @@ def run_training(
         X_train, 
         Y_train, 
         val_data,
-        # mixed_float = True,
+        mixed_float = True,
     ):
     """
     val_data : (X_val, Y_val) tuple
     """
-    # if mixed_float:
-    #     policy = mixed_precision.Policy('mixed_float16')
-    #     mixed_precision.set_policy(policy)
+    if mixed_float:
+        policy = mixed_precision.Policy('mixed_float16')
+        mixed_precision.set_policy(policy)
     
     st = time.time()
 
