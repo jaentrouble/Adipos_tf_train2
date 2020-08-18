@@ -4,14 +4,6 @@ from tensorflow.keras.mixed_precision import experimental as mixed_precision
 import time
 from custom_tqdm import TqdmNotebookCallback
 
-gs = tf.config.experimental.list_physical_devices('GPU')
-if gs :
-    try :
-        for gpu in gs:
-            tf.config.experimental.set_memory_growth(gpu, True)
-    except RuntimeError as e:
-        print(e)
-
 
 class AdiposeModel(keras.Model):
     def __init__(self, inputs, model_function):
