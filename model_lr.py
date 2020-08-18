@@ -2,56 +2,57 @@ def lr_no_update(epoch, lr):
     return 0.0
 
 def lr_step(epoch, lr):
-    lr = 0.2
-    if epoch > 10 and epoch<=20 :
+    if epoch<=10:
+        lr = 0.2
+    elif epoch<=20 :
         lr = 0.02
-    elif epoch > 20 and epoch<=50:
+    elif epoch<=50:
         lr = 0.01
-    elif epoch > 50 :
+    else :
         lr = 0.005
     return lr
 
 def lr_step2(epoch, lr):
     if epoch <= 10 :
         lr = (epoch +1) * 0.01
-    elif epoch > 10 and epoch<=20 :
+    elif epoch<=20 :
         lr = 0.02
-    elif epoch > 20 and epoch<=50:
+    elif epoch<=50:
         lr = 0.01
-    elif epoch > 50 :
+    else :
         lr = 0.005
     return lr
 
 def lr_step3(epoch, lr):
     if epoch <= 10 :
         lr = (epoch +1) * 0.01
-    elif epoch > 10 and epoch<=20:
+    elif epoch<=20:
         lr = 0.02
-    elif epoch > 20 and epoch<=50:
+    elif epoch<=50:
         lr = 0.01
-    elif epoch > 50 :
+    else :
         lr = lr * 0.95
     return lr
 
 def lr_step4(epoch, lr):
     if epoch <= 10 :
         lr = (epoch +1) * 0.001
-    elif epoch > 10 and epoch<=20:
+    elif epoch<=20:
         lr = 0.01
-    elif epoch > 20 and epoch<=50:
+    elif epoch<=50:
         lr = 0.005
-    elif epoch > 50 :
+    else :
         lr = lr * 0.95
     return lr
 
 def lr_step5(epoch, lr):
     if epoch <= 10 :
         lr = (epoch +1) * 0.001
-    elif epoch > 10 and epoch<=20:
+    elif epoch<=20:
         lr = 0.01
-    elif epoch > 20 and epoch<=40:
+    elif epoch<=40:
         lr = 0.005
-    elif epoch > 40 :
+    else :
         if epoch % 5 == 0 :
             lr = lr * 0.95
     return lr
