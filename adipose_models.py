@@ -1,6 +1,7 @@
 import tensorflow as tf
 import tensorflow.keras as keras
 from tensorflow.keras import layers
+import custom_layers as clayers
 
 # Get inputs and return outputs
 # Don't forget to squeeze output
@@ -173,6 +174,37 @@ def res_12_2_0_BN(inputs):
     x = layers.BatchNormalization()(x)
     x = layers.ReLU()(x)
     x = layers.Conv2D(1, 3, padding='same', activation='linear')(x)
+    x = tf.squeeze(x, axis=-1)
+    outputs = layers.Activation('linear', dtype='float32')(x)
+    return outputs
+
+def hr_2_2_0(inputs):
+    x = [inputs]
+    x = clayers.HighResolutionModule(
+        filters=[8],
+        blocks=[2],
+        name='HR_0'
+    )(x)
+    x = clayers.HighResolutionModule(
+        filters=[8,16],
+        blocks=[2,2],
+        name='HR_1'
+    )
+    x = clayers.HighResolutionModule(
+        filters=[8,16,32],
+        blocks=[2,2,2],
+        name='HR_2'
+    )
+    x = clayers.HighResolutionFusion(
+        filters=[8],
+        name='Fusion_0'
+    )
+    x = layers.Conv2D(
+        1,
+        1,
+        padding='same',
+        name='Final_conv'
+    )
     x = tf.squeeze(x, axis=-1)
     outputs = layers.Activation('linear', dtype='float32')(x)
     return outputs
