@@ -189,22 +189,22 @@ def hr_2_2_0(inputs):
         filters=[8,16],
         blocks=[2,2],
         name='HR_1'
-    )
+    )(x)
     x = clayers.HighResolutionModule(
         filters=[8,16,32],
         blocks=[2,2,2],
         name='HR_2'
-    )
+    )(x)
     x = clayers.HighResolutionFusion(
         filters=[8],
         name='Fusion_0'
-    )
+    )(x)
     x = layers.Conv2D(
         1,
         1,
         padding='same',
         name='Final_conv'
-    )
+    )(x)
     x = tf.squeeze(x, axis=-1)
     outputs = layers.Activation('linear', dtype='float32')(x)
     return outputs
