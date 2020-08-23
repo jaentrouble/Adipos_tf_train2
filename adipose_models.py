@@ -204,7 +204,7 @@ def hr_2_2_0(inputs):
         1,
         padding='same',
         name='Final_conv'
-    )(x)
+    )(x[0])
     x = tf.squeeze(x, axis=-1)
     outputs = layers.Activation('linear', dtype='float32')(x)
     return outputs
