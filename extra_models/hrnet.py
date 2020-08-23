@@ -227,9 +227,8 @@ class HighResolutionFusion(layers.Layer):
         for i in range(self.num_outputs):
             # First input
             x = self.fuse_layers[i][0](inputs[0])
-            x = layers.Activation('linear',dtype='float32')(x)
             for j in range(1, self.num_inputs):
-                x = tf.add(x, self.fuse_layers[i][j](inputs[j]))
+                x = layers.add([x, self.fuse_layers[i][j](inputs[j])])
             out = nn.relu(x)
             outputs.append(out)
 
