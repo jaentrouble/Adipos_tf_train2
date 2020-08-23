@@ -198,6 +198,7 @@ class HighResolutionFusion(layers.Layer):
                             size=2*(j-i),
                             interpolation='bilinear'
                         ),
+                        layers.Activation('linear',dtype='float32')
                     ]))
                 elif j == i:
                     fuse_layer.append(keras.Sequential([
