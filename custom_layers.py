@@ -30,6 +30,9 @@ class MaxPoolWithArgmax2D(layers.Layer):
 
     def get_config(self):
         config = super().get_config()
+        config['pool_size'] = self.ksize
+        config['strides'] = self.strides
+        config['padding'] = self.padding
         return config
 
 class Max_Unpool2D(layers.Layer):
@@ -80,6 +83,7 @@ class Max_Unpool2D(layers.Layer):
 
     def get_config(self):
         config = super().get_config()
+        config['unpool_size'] = self.ksize
         return config
 
 if __name__ == '__main__':
