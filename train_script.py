@@ -3,6 +3,7 @@ from model_trainer import run_training
 import adipose_models
 import model_lr
 import argparse
+import tensorflow as tf
 
 parser = argparse.ArgumentParser()
 parser.add_argument('-m','--model', dest='model')

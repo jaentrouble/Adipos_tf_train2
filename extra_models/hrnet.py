@@ -196,7 +196,7 @@ class HighResolutionFusion(layers.Layer):
                         layers.BatchNormalization(momentum=BN_MOMENTUM),
                         layers.UpSampling2D(
                             size=2*(j-i),
-                            interpolation='nearest'
+                            interpolation='bilinear'
                         ),
                     ]))
                 elif j == i:
@@ -222,6 +222,8 @@ class HighResolutionFusion(layers.Layer):
                     ]))
                     fuse_layer.append(keras.Sequential(downsampling))
             self.fuse_layers.append(fuse_layer)
+
+    @tf.function
     def call(self, inputs):
         outputs = []
         for i in range(self.num_outputs):
