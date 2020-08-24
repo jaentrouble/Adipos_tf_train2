@@ -191,7 +191,7 @@ class HighResolutionFusion(layers.Layer):
                         layers.Conv2DTranspose(
                             self.filters[i],
                             2*(j-i),
-                            strides=2(j-i),
+                            strides=2*(j-i),
                         ),
                         layers.BatchNormalization(momentum=BN_MOMENTUM),
                         # layers.UpSampling2D(
