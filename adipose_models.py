@@ -179,6 +179,8 @@ def res_12_2_0_BN(inputs):
     return outputs
 
 def hr_2_2_0(inputs):
+    # WRONG NAME
+    # Should be hr_3_2_0 
     x = [inputs]
     x = clayers.HighResolutionModule(
         filters=[8],

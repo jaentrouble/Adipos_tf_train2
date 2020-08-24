@@ -196,7 +196,7 @@ class HighResolutionFusion(layers.Layer):
                         layers.BatchNormalization(momentum=BN_MOMENTUM),
                         layers.UpSampling2D(
                             size=2*(j-i),
-                            interpolation='bilinear'
+                            interpolation='nearest'
                         ),
                     ]))
                 elif j == i:
