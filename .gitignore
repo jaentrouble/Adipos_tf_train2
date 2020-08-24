@@ -127,3 +127,5 @@ dmypy.json
 #VsCode
 .vscode/*
 logs/
+savedmodels/
+converted_model/
