@@ -3,6 +3,7 @@ from tensorflow import keras
 from tensorflow.keras.mixed_precision import experimental as mixed_precision
 import time
 from custom_tqdm import TqdmNotebookCallback
+from tqdm.keras import TqdmCallback
 
 
 class AdiposeModel(keras.Model):
@@ -53,6 +54,7 @@ def run_training(
         Y_train, 
         val_data,
         mixed_float = True,
+        notebook = True,
     ):
     """
     val_data : (X_val, Y_val) tuple
@@ -90,8 +92,11 @@ def run_training(
         verbose=1
     )
 
-    tqdm_callback = TqdmNotebookCallback(metrics=['loss', 'binary_accuracy'],
-                                        leave_inner=False)
+    if notebook:
+        tqdm_callback = TqdmNotebookCallback(metrics=['loss', 'binary_accuracy'],
+                                            leave_inner=False)
+    else:
+        tqdm_callback = TqdmCallback()
 
     mymodel.fit(
         x=X_train,
