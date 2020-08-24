@@ -14,6 +14,14 @@ parser.add_argument('-mf','--mixedfloat', dest='mixed_float',
                     action='store_true',default=False)
 args = parser.parse_args()
 
+gpus = tf.config.experimental.list_physical_devices('GPU')
+if gpus:
+    try:
+        for gpu in gpus:
+            tf.config.experimental.set_memory_growth(gpu, True)
+    except RuntimeError as e:
+        print(e)
+
 with np.load('cell_mask_data.npz') as data:
     X = data['img']
     Y = data['mask']
