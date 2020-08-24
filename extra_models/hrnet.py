@@ -190,12 +190,12 @@ class HighResolutionFusion(layers.Layer):
                     fuse_layer.append(keras.Sequential([
                         layers.Conv2DTranspose(
                             self.filters[i],
-                            2*(j-i),
-                            strides=2*(j-i),
+                            2**(j-i),
+                            strides=2**(j-i),
                         ),
                         layers.BatchNormalization(momentum=BN_MOMENTUM),
                         # layers.UpSampling2D(
-                        #     size=2*(j-i),
+                        #     size=2**(j-i),
                         #     interpolation='bilinear'
                         # ),
                     ]))
