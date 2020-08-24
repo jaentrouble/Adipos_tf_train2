@@ -60,7 +60,7 @@ class AugGenerator():
         self.idx = self.idx % self.n
         return distorted['image'], distorted['mask']
 
-def create_train_dataset(X, Y):
+def create_train_dataset(X, Y, batch_size):
     autotune = tf.data.experimental.AUTOTUNE
     dataset = tf.data.Dataset.from_generator(
         AugGenerator,
@@ -69,7 +69,7 @@ def create_train_dataset(X, Y):
         args = [X,Y],
     )
     dataset = dataset.shuffle(X.shape[0])
-    dataset = dataset.batch(32, drop_remainder=True)
+    dataset = dataset.batch(batch_size, drop_remainder=True)
     dataset = dataset.prefetch(autotune)
     dataset = dataset.repeat()
 
@@ -149,11 +149,11 @@ def run_training(
         tqdm_callback = TqdmCallback()
 
     if augment:
-        train_ds = create_train_dataset(X_train, Y_train)
+        train_ds = create_train_dataset(X_train, Y_train, batch_size)
         mymodel.fit(
             x=train_ds,
             epochs=epochs,
-            steps_per_epoch=X_train.shape[0]//epochs,
+            steps_per_epoch=X_train.shape[0]//batch_size,
             callbacks=[
                 tensorboard_callback,
                 lr_callback,
