@@ -223,7 +223,6 @@ class HighResolutionFusion(layers.Layer):
                     fuse_layer.append(keras.Sequential(downsampling))
             self.fuse_layers.append(fuse_layer)
 
-    @tf.function
     def call(self, inputs):
         outputs = []
         for i in range(self.num_outputs):
