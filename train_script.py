@@ -56,5 +56,6 @@ kwargs['Y_train'] = Y_train
 kwargs['val_data'] = (X_val, Y_val)
 kwargs['mixed_float'] = mixed_float
 kwargs['notebook'] = False
+kwargs['augment'] = True
 
 run_training(**kwargs)
