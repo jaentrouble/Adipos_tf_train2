@@ -188,16 +188,16 @@ class HighResolutionFusion(layers.Layer):
             for j in range(self.num_inputs):
                 if j > i:
                     fuse_layer.append(keras.Sequential([
-                        layers.Conv2D(
+                        layers.Conv2DTranspose(
                             self.filters[i],
-                            1,
-                            padding='same',
+                            2,
+                            strides=2,
                         ),
                         layers.BatchNormalization(momentum=BN_MOMENTUM),
-                        layers.UpSampling2D(
-                            size=2*(j-i),
-                            interpolation='bilinear'
-                        ),
+                        # layers.UpSampling2D(
+                        #     size=2*(j-i),
+                        #     interpolation='bilinear'
+                        # ),
                     ]))
                 elif j == i:
                     fuse_layer.append(keras.Sequential([
