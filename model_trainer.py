@@ -153,7 +153,7 @@ def run_training(
         mymodel.fit(
             x=train_ds,
             epochs=epochs,
-            steps_per_epoch=X_train.shape[0],
+            steps_per_epoch=X_train.shape[0]//epochs,
             callbacks=[
                 tensorboard_callback,
                 lr_callback,
